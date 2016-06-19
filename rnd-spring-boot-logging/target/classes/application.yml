@@ -1,0 +1,6 @@
+#debug: false
+logging:
+ path: /var/log
+ file: myapp.log
+server:
+      port: 9000

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>de.ajit</groupId>
+	<artifactId>minify.test</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>demo.minify</name>
+	<description>Demo project for Spring Boot minify test</description>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.2.7.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>1.8</java.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-freemarker</artifactId>
+		</dependency>
+
+
+
+	</dependencies>
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>com.samaxes.maven</groupId>
+				<artifactId>minify-maven-plugin</artifactId>
+				<version>1.7.4</version>
+				<executions>
+					<execution>
+						<id>default-minify</id>
+						<phase>package</phase><!-- When omitted defaults to 'process-resources' -->
+						<configuration>
+							<charset>UTF-8</charset>
+							<webappSourceDir>${basedir}/src/main/resources/static</webappSourceDir>
+							<webappTargetDir>${basedir}/src/main/resources/static</webappTargetDir>
+							<cssSourceFiles>
+							<cssSourceFile>main.css</cssSourceFile>
+							</cssSourceFiles>
+							<!--<cssSourceDir>css</cssSourceDir>-->
+
+							<!--<cssFinalFile>style.css</cssFinalFile>-->
+							<jsSourceDir>scripts</jsSourceDir>
+							<jsSourceFiles>
+								<jsSourceFile>main.js</jsSourceFile>
+								<jsSourceFile>controllers.js</jsSourceFile>
+							</jsSourceFiles>
+							<!--<jsFinalFile>script.js</jsFinalFile>-->
+							<jsEngine>CLOSURE</jsEngine>
+						</configuration>
+						<goals>
+							<goal>minify</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+	
+
+</project>
